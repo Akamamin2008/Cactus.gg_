@@ -346,10 +346,10 @@ local Script = {
 
 getgenv().Sentinel = {
     Enabled = true,
-    HorizontalPrediction = 0.13387429387423987423987423,
-    VerticalPrediction = 0.10387423987423987423987423,
+    HorizontalPrediction = 0.13298742983742983742983742,
+    VerticalPrediction = 0.10287439827439827439827439,
     jumpoffset2 = 0,
-    jumpoffset = 0.1579823749823749823,
+    jumpoffset = 0.15729487239847239847239847,
     ResolverEnabled = true,
     SelectedPart = "HumanoidRootPart",
     AutoPrediction = false,
