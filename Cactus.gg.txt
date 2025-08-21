@@ -350,6 +350,44 @@ getgenv().Sentinel = {
     VerticalPrediction = 0.11938475692837465928374,
     jumpoffset2 = 0.18475692837465928374659,
     jumpoffset = 0.20193847569283746592837,
+-- auto adjust predictions based on ping
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+local function getPing()
+    return tonumber(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString():match("%d+"))
+end
+
+RunService.RenderStepped:Connect(function()
+    local ping = getPing()
+
+    if ping <= 70 then
+        HorizontalPrediction = 0.1538492837465928374659
+        VerticalPrediction   = 0.1183746592837465928374
+        JumpOffset           = 0.1928374659283746592837
+        JumpOffset2          = 0.1746592837465928374659
+
+    elseif ping <= 90 then
+        HorizontalPrediction = 0.15638475692837465928374
+        VerticalPrediction   = 0.11938475692837465928374
+        JumpOffset           = 0.20193847569283746592837
+        JumpOffset2          = 0.18475692837465928374659
+
+    elseif ping <= 110 then
+        HorizontalPrediction = 0.1638492019384728374659
+        VerticalPrediction   = 0.1238475692837465928374
+        JumpOffset           = 0.21475692837465928374659
+        JumpOffset2          = 0.1975629384756928374659
+
+    else
+        HorizontalPrediction = 0.17283746592837465928374
+        VerticalPrediction   = 0.12938475692837465928374
+        JumpOffset           = 0.22938475692837465928374
+        JumpOffset2          = 0.20938475692837465928374
+    end
+end)
+
     ResolverEnabled = true,
     SelectedPart = "HumanoidRootPart",
     AutoPrediction = false,
