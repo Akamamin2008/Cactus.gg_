@@ -350,6 +350,26 @@ getgenv().Sentinel = {
     VerticalPrediction = 0.11938475692837465928374,
     jumpoffset2 = 0.18475692837465928374659,
     jumpoffset = 0.20193847569283746592837,
+    ResolverEnabled = true,
+    SelectedPart = "HumanoidRootPart",
+    AutoPrediction = false,
+    AutoPredMode = "PingBased", 
+    ShootDelay = 0,
+    NoGroundShot = true,
+    AutoAir = false,
+    LookAt = false,
+    smoothness = 0.900,
+    TracerEnabled = true,
+    RandomPart = false,
+    speedvalue = 1,
+    MacroSpeed = 0.1,
+    Camera = false,
+    easingStyle = "Sine",
+    easingDirection = "Out",
+    JumpBreak = false,
+    network = false
+}
+
 -- auto adjust predictions based on ping
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -387,28 +407,6 @@ RunService.RenderStepped:Connect(function()
         JumpOffset2          = 0.20938475692837465928374
     end
 end)
-
-    ResolverEnabled = true,
-    SelectedPart = "HumanoidRootPart",
-    AutoPrediction = false,
-    AutoPredMode = "PingBased", 
-    ShootDelay = 0,
-    NoGroundShot = true,
-    AutoAir = false,
-    LookAt = false,
-    smoothness = 0.900,
-    TracerEnabled = true,
-    RandomPart = false,
-    speedvalue = 1,
-    MacroSpeed = 0.1,
-    Camera = false,
-    easingStyle = "Sine",
-    easingDirection = "Out",
-    JumpBreak = false,
-    network = false
-}
-
-
 
 
 local GrenadeTP = false
