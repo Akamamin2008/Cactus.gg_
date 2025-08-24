@@ -343,58 +343,14 @@ local Script = {
             }
         }
     }
--- 🔥 Blatant Auto-Ping Prediction System (RandomPart / REV + DB)
--- Mobile safe, auto adjusts based on ping spikes
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local Stats = game:GetService("Stats")
-local LocalPlayer = Players.LocalPlayer
-
--- Step ladder sets (each interval super blatant)
-local PingSets = {
-    {Range = {65, 80},   H = 0.1528374659182736, V = 0.1348571928374659, J1 = 0.2183746591827364, J2 = 0.1129384719283746},
-    {Range = {81, 90},   H = 0.1608374659182736, V = 0.1383746591827364, J1 = 0.2238746591827364, J2 = 0.1158374659182736},
-    {Range = {91, 100},  H = 0.1683746591827364, V = 0.1448374659182736, J1 = 0.2328374659182736, J2 = 0.1218374659182736},
-    {Range = {101, 110}, H = 0.1748374659182736, V = 0.1518374659182736, J1 = 0.2383746591827364, J2 = 0.1258374659182736},
-    {Range = {111, 120}, H = 0.1828374659182736, V = 0.1583746591827364, J1 = 0.2448374659182736, J2 = 0.1298374659182736},
-    {Range = {121, 140}, H = 0.1928374659182736, V = 0.1663746591827364, J1 = 0.2538374659182736, J2 = 0.1348374659182736},
-    {Range = {141, 160}, H = 0.2028374659182736, V = 0.1748374659182736, J1 = 0.2638374659182736, J2 = 0.1428374659182736},
-    {Range = {161, 200}, H = 0.2148374659182736, V = 0.1828374659182736, J1 = 0.2748374659182736, J2 = 0.1518374659182736},
-    {Range = {201, 250}, H = 0.2248374659182736, V = 0.1928374659182736, J1 = 0.2848374659182736, J2 = 0.1583746591827364},
-    {Range = {251, 300}, H = 0.2383746591827364, V = 0.2048374659182736, J1 = 0.2983746591827364, J2 = 0.1673846591827364},
-    {Range = {301, 350}, H = 0.2528374659182736, V = 0.2183746591827364, J1 = 0.3128374659182736, J2 = 0.1763746591827364},
-    {Range = {351, 400}, H = 0.2683746591827364, V = 0.2328374659182736, J1 = 0.3283746591827364, J2 = 0.1848374659182736},
-}
-
--- Current active set
-local CurrentSet = PingSets[1]
-
--- Function to update set by ping
-local function UpdatePredictionByPing()
-    local ping = Stats.Network.ServerStatsItem["Data Ping"]:GetValue()
-    for _, set in ipairs(PingSets) do
-        if ping >= set.Range[1] and ping <= set.Range[2] then
-            CurrentSet = set
-            break
-        end
-    end
-end
-
--- Auto update every 0.2s
-RunService.Heartbeat:Connect(function()
-    UpdatePredictionByPing()
-end)
-
--- Example usage (replace in your aim script)
--- CurrentSet.H , CurrentSet.V , CurrentSet.J1 , CurrentSet.J2
 
 getgenv().Sentinel = {
     Enabled = true,
-    Horizontal = function() return CurrentSet.H end,
-    Vertical = function() return CurrentSet.V end,
-    JumpOffset2 = function() return CurrentSet.J2 end,
-    JumpOffset = function() return CurrentSet.J1 end,
+    HorizontalPrediction = 0.15283746591827364591,
+    VerticalPrediction = 0.13485719283746591827,
+    jumpoffset2 = 0.11293847192837465918,
+    jumpoffset = 0.21837465918273645918,
     ResolverEnabled = true,
     SelectedPart = "HumanoidRootPart",
     AutoPrediction = false,
