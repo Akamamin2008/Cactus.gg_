@@ -17,6 +17,30 @@ local Script = {
                 OldPos = Vector3.new(0, 0, 0),
                 ResolvedVelocity = Vector3.new(0, 0, 0)
             },
+getgenv().UndetectableAntiLock = true
+
+local RunService = game:GetService("RunService")
+local lp = game.Players.LocalPlayer
+
+RunService.Heartbeat:Connect(function()
+    if getgenv().UndetectableAntiLock and lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") then
+        local hrp = lp.Character.HumanoidRootPart
+
+        -- Break velocity-based resolvers
+        hrp.Velocity = Vector3.zero
+        hrp.AssemblyLinearVelocity = Vector3.zero
+
+        -- Break MoveDirection and LookVector resolvers
+        hrp.CFrame = CFrame.new(hrp.Position) * CFrame.Angles(0, math.rad(math.random(0, 360)), 0)
+
+        -- Break Humanoid state resolvers
+        local hum = lp.Character:FindFirstChild("Humanoid")
+        if hum then
+            hum:ChangeState(Enum.HumanoidStateType.Physics)
+        end
+    end
+end)
+
             AutoSelectTick = tick(),
             AntiAimViewer = {
                 MouseRemoteFound = false,
