@@ -538,16 +538,13 @@ Menu:SetVisible(false)
 
 local function ToggleMenu()
     if Open == true then
-        Blur.Enabled = true
-        butj.ImageTransparency = 0
+        Blur.Enabled = false
+        butj.ImageTransparency = 1
         Menu:SetVisible(true)
     else
         Blur.Enabled = false
         Menu:SetVisible(false)
-        for i = 0, 1, 0.1 do
-            butj.ImageTransparency = i
-            task.wait(0.05)
-        end
+        
     end
 end
 
