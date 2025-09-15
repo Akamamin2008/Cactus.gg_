@@ -1563,7 +1563,7 @@ TargHighlight.FillColor = TargetAimbot.HighlightColor1
 TargHighlight.OutlineColor = TargetAimbot.HighlightColor2
 TargHighlight.FillTransparency = 0.5
 TargHighlight.OutlineTransparency = 0
-TargHighlight.Enabled = false
+TargHighlight.Enabled = true
 
 local Tracer = Drawing.new("Line")
 Tracer.Visible = false
